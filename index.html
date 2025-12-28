@@ -1,12 +1,69 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Progate</title>
-  </head>
-  <body>
-    <h1 class="title">HTML & CSS の開発環境を用意しよう！</h1>
-    <p>自分でPCでWebページを開発する方法を学習しましょう</p>
-  </body>
-  </html>
-  
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart Animation Mobile</title>
+    <style>
+        body {
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden; /* スクロールバーを出さない */
+        }
+
+        .container {
+            position: relative;
+            /* スマホの横幅に合わせて、画面の80%のサイズにする（最大でも400px） */
+            width: 80vmin; 
+            height: 80vmin;
+            max-width: 400px;
+            max-height: 400px;
+        }
+
+        .heart {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            fill: none;
+            stroke: #ff2d95;
+            stroke-width: 2;
+            stroke-linecap: round;
+            animation: pulse 1.5s ease-in-out infinite;
+            filter: drop-shadow(0 0 10px #ff2d95);
+        }
+
+        /* 複数を重ねて輝きを強くする（スマホでも軽量に動くよう3つに制限） */
+        .heart:nth-child(2) { animation-delay: 0.15s; opacity: 0.6; stroke-width: 1.5; }
+        .heart:nth-child(3) { animation-delay: 0.3s; opacity: 0.3; stroke-width: 1; }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(1); opacity: 0.8; }
+        }
+
+        .heart-path {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: draw 3s ease-out forwards;
+        }
+
+        @keyframes draw {
+            to { stroke-dashoffset: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <svg class="heart" viewBox="0 0 32 32"><path class="heart-path" d="M16 28.5L14.1 26.7C7.3 20.6 3 16.7 3 12C3 8.1 6.1 5 10 5C12.2 5 14.3 6 15.7 7.7C17.1 6 19.2 5 21.4 5C25.3 5 28.4 8.1 28.4 12C28.4 16.7 24.1 20.6 17.3 26.7L16 28.5Z"/></svg>
+        <svg class="heart" viewBox="0 0 32 32"><path class="heart-path" d="M16 28.5L14.1 26.7C7.3 20.6 3 16.7 3 12C3 8.1 6.1 5 10 5C12.2 5 14.3 6 15.7 7.7C17.1 6 19.2 5 21.4 5C25.3 5 28.4 8.1 28.4 12C28.4 16.7 24.1 20.6 17.3 26.7L16 28.5Z"/></svg>
+        <svg class="heart" viewBox="0 0 32 32"><path class="heart-path" d="M16 28.5L14.1 26.7C7.3 20.6 3 16.7 3 12C3 8.1 6.1 5 10 5C12.2 5 14.3 6 15.7 7.7C17.1 6 19.2 5 21.4 5C25.3 5 28.4 8.1 28.4 12C28.4 16.7 24.1 20.6 17.3 26.7L16 28.5Z"/></svg>
+    </div>
+
+</body>
+</html>
